@@ -76,11 +76,11 @@ export default function Login () {
   const [validToken, setValidToken] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  let userId
+  let userId;
 
   useEffect(() => {
     Axios.get(
-      process.env.REACT_APP_API + `/auth/user/verify-resetpass/${params.token}`
+      API_URL + `/auth/user/verify-resetpass/${params.token}`
     )
       .then((respond) => {
         setValidToken(true);

@@ -32,12 +32,14 @@ import ProtectedRoutes from "./components/admin/ProtectedRoutes";
 // Others
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+const API_URL = process.env.REACT_APP_API_URL
+
 
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     const token = localStorage.getItem("token");
-    Axios.get(process.env.REACT_APP_API + "/auth/user/keeplogin", {
+    Axios.get(API_URL + "/auth/user/keeplogin", {
       headers: { authorization: token },
     // Axios.get(process.env.REACT_APP_API + "/auth/admin/keeplogin", {
       // headers: { authorization: token },

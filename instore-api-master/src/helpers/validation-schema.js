@@ -36,5 +36,5 @@ module.exports.userSetNewPassword = joi.object({
     .minOfNumeric(1)
     .required(),
   confirm_password: joi.ref("password"),
-  adminId: joi.string().required(),
+  userId: joi.string().required(),
 });

@@ -225,10 +225,10 @@ module.exports.login = async (req, res) => {
         }
         
         // 3. if user already resgitered => validate password - OPEN WHEN PASS ALREADY HASH
-        // const isValid = await bcrypt.compare(password, USER[0].password)
-        // if(!isValid) {
-        //     return res.status(404).send("Invalid Password!")
-        // }
+        const isValid = await bcrypt.compare(password, USER[0].password)
+        if(!isValid) {
+            return res.status(404).send("Invalid Password!")
+        }
 
         // 4. if password valid, -> create token using JWT
         const token = jwt.sign({ userId : USER[0].user_id }, process.env.JWT_PASS)
@@ -307,7 +307,7 @@ module.exports.userCheckEmailResPass = async (req, res) => {
             html: `
                 <h1 style="text-align: center;">Reset Your Password</h1>
                 <p>We have received your request to reset the password for your account</p>
-                <a href='http://localhost:5000/api/auth/user/verify-resetpass/${token}'>Click here to set new password</a>
+                <a href='http://localhost:3000/user/reset-pass/${token}'>Click here to set new password</a>
                 `,
             });
         res.status(200).send("Email has been sent to reset your password");
